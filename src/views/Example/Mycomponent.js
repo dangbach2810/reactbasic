@@ -3,7 +3,12 @@ import ChildComponent from "./ChildComponent";
 class MyComponent extends React.Component {
     state = {
         firstName: "",
-        lastName: ""
+        lastName: "",
+        arrayJob: [
+            { id: 1, job: 'Developer', salary: "500$" },
+            { id: 2, job: 'Tester', salary: "400$" },
+            { id: 3, job: 'PM', salary: "1000$" }
+        ]
     }
     handleChangeFirst = (e) => {
         this.setState({
@@ -17,7 +22,6 @@ class MyComponent extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log("click tao", this.state)
     }
     render() {
         return (
@@ -35,9 +39,7 @@ class MyComponent extends React.Component {
                     <br /><br />
                     <input type="submit" value="submit" onClick={(e) => { this.handleSubmit(e) }} />
                 </form>
-                <ChildComponent name={"bach"} age={18} />
-                <ChildComponent name={"HOI IT"} age={10} />
-                <ChildComponent name={"SEP QUAN"} age={31} />
+                <ChildComponent name={this.state.firstName} age={12} jobArray={this.state.arrayJob} />
             </>
         )
     }

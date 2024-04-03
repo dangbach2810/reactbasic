@@ -1,9 +1,5 @@
 import React from "react";
 class ChildComponent extends React.Component {
-    state = {
-        firstName: "",
-        lastName: ""
-    }
     handleChangeFirst = (e) => {
         this.setState({
             firstName: e.target.value
@@ -16,11 +12,10 @@ class ChildComponent extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log("click tao", this.state)
     }
     render() {
 
-        let { name, age } = this.props;
+        let { name, age, jobArray } = this.props;
         return (
             //code html here   
             /**
@@ -28,6 +23,13 @@ class ChildComponent extends React.Component {
              */
             <>
                 <div>Child Component: {name} - {age}</div>
+                <div>
+                    {jobArray.map((item, index) => {
+                        return (<div>
+                            {item.job} - {item.salary}
+                        </div>)
+                    })}
+                </div>
             </>
 
         )
