@@ -7,6 +7,10 @@ class MyComponent extends React.Component {
     handleOnchangeName = (e) => {
         this.setState({ name: e.target.value })
     }
+    handleClickButton = () => {
+        alert("Click me")
+        console.log("Hit the button")
+    }
     render() {
         return (
             //code html here   
@@ -20,6 +24,9 @@ class MyComponent extends React.Component {
                 <div className="my-component">
                     <input value={this.state.name} type="text" onChange={(e) => this.handleOnchangeName(e)} />
                     Hello My Component. My name is {this.state.name}
+                </div>
+                <div>
+                    <button onClick={() => this.handleClickButton()}>Click me</button>
                 </div>
             </>
 
