@@ -5,9 +5,9 @@ class MyComponent extends React.Component {
         firstName: "",
         lastName: "",
         arrayJob: [
-            { id: 1, job: 'Developer', salary: "500$" },
-            { id: 2, job: 'Tester', salary: "400$" },
-            { id: 3, job: 'PM', salary: "1000$" }
+            { id: 1, job: 'Developer', salary: "500" },
+            { id: 2, job: 'Tester', salary: "400" },
+            { id: 3, job: 'PM', salary: "1000" }
         ]
     }
     handleChangeFirst = (e) => {
@@ -39,13 +39,6 @@ class MyComponent extends React.Component {
                     <br /><br />
                     <input type="submit" value="submit" onClick={(e) => { this.handleSubmit(e) }} />
                 </form>
-                {this.state.arrayJob.map((item, index) => {
-                    return (
-                        <div>
-                            {item.job} - {item.salary}
-                        </div>
-                    )
-                })}
                 <ChildComponent name={this.state.firstName} age={12} jobArray={this.state.arrayJob} />
             </>
         )

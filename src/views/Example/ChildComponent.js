@@ -1,44 +1,43 @@
 import React from "react";
-// class ChildComponent extends React.Component {
-//     render() {
+class ChildComponent extends React.Component {
+    state = {
+        showJobs: false
+    }
+    handleShowHide = () => {
+        this.setState({
+            showJobs: !this.state.showJobs
+        })
+    }
+    render() {
 
-//         let { name, age, jobArray } = this.props;
-//         return (
-//             //code html here   
-//             /**
-//              * react.fragment
-//              */
-//             <>
-//                 <div>Child Component: {name} - {age}</div>
-//                 <div>
-//                     {jobArray.map((item, index) => {
-//                         return (<div>
-//                             {item.job} - {item.salary}
-//                         </div>)
-//                     })}
-//                 </div>
-//             </>
+        let { jobArray } = this.props;
+        let { showJobs } = this.state;
+        return (
+            //code html here   
+            /**
+             * react.fragment
+             */
+            <>
+                {showJobs === false
+                    ?
+                    <div><button onClick={() => { this.handleShowHide() }}>Show</button></div>
+                    :
+                    <>
+                        <div className="job-lists">
+                            {jobArray.map((item, index) => {
+                                if (item.salary >= 500) {
+                                    return (<div>
+                                        {item.job} - {item.salary} $
+                                    </div>)
+                                }
+                            })}</div>
+                        <div><button onClick={() => this.handleShowHide()}>Hide</button></div>
+                    </>
+                }
+            </>
 
-//         )
-//     }
-// }
-const ChildComponent = (props) => {
-    let { name, age, jobArray } = props;
-    return (
-        //code html here   
-        /**
-         * react.fragment
-         */
-        <>
-            <div>Child Component: {name} - {age}</div>
-            <div>
-                {jobArray.map((item, index) => {
-                    return (<div>
-                        {item.job} - {item.salary}
-                    </div>)
-                })}
-            </div>
-        </>
-    )
+        )
+    }
 }
+
 export default ChildComponent;
