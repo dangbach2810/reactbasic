@@ -11,7 +11,7 @@ class ListTodo extends React.Component {
             { id: 3, title: "Fix bug" }
         ]
         ,
-        editTodo: {}
+        editTodo: ""
     }
     addNewTodo = (todo) => {
         let current = this.state.listTodos;
@@ -29,15 +29,42 @@ class ListTodo extends React.Component {
         toast.info("Just Delete a Todo")
     }
     handEditTodo = (todo) => {
+        let { editTodo, listTodos } = this.state;
+
+        let isEmptyObj = Object.keys(editTodo).length === 0;
+
+        //save
+        if (isEmptyObj === false && editTodo.id === todo.id) {
+
+            let listTodosCopy = [...listTodos];
+
+            let objIndex = listTodosCopy.findIndex((item => item.id === todo.id));
+
+            listTodosCopy[objIndex].title = editTodo.title;
+
+            this.setState({
+                listTodos: listTodosCopy,
+                editTodo: ""
+            })
+            toast.success("Update todo succeed!")
+            return;
+        }
+
+        //edit
         this.setState({
             editTodo: todo
         })
     }
+    handleOnchangeEditTodo = (e) => {
+        let editCopy = { ...this.state.editTodo };
+        editCopy.title = e.target.value
+        this.setState({
+            editTodo: editCopy
+        })
+    }
     render() {
         let { listTodos, editTodo } = this.state
-        console.log(editTodo)
         let isEmptyObj = Object.keys(editTodo).length === 0 // empty is return true
-        console.log(isEmptyObj)
         return (
             <div className="list-todo-container">
                 <AddTodo addNewTodo={this.addNewTodo} />
@@ -46,10 +73,24 @@ class ListTodo extends React.Component {
                         listTodos.map((item, index) => {
                             return (
                                 <div className="todo-child" key={item.id}>
-                                    <span>{index + 1} - {item.title}</span>
+                                    {isEmptyObj === true ?
+                                        <span>{index + 1} - {item.title}</span>
+                                        :
+                                        <>
+                                            {editTodo.id === item.id ?
+                                                <span>
+                                                    {index + 1} - <input value={editTodo.title} onChange={(e) => this.handleOnchangeEditTodo(e)} />
+                                                </span>
+                                                :
+                                                <span>{index + 1} - {item.title}</span>
+                                            }
+                                        </>
+
+                                    }
                                     <button className="edit"
                                         onClick={() => this.handEditTodo(item)}
-                                    >Edit</button>
+                                    >{isEmptyObj === false && item.id === editTodo.id ? "Save" : "Edit"}</button>
+
                                     <button className="delete"
                                         onClick={() => {
                                             this.handDeleteTodo(item);
