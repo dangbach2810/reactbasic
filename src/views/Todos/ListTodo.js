@@ -2,7 +2,7 @@ import React from "react";
 import './ListTodo.scss';
 import AddTodo from "./AddTodo";
 import { toast } from 'react-toastify';
-
+import Color from '../Example/RandomColor'
 class ListTodo extends React.Component {
     state = {
         listTodos: [
@@ -112,4 +112,4 @@ class ListTodo extends React.Component {
         )
     }
 }
-export default ListTodo
+export default Color(ListTodo)

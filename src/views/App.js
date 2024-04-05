@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from './Nav/Nav';
 import Home from './Example/Home';
+import ListUsers from './User/ListUsers';
 import {
   BrowserRouter,
   Switch,
@@ -24,16 +25,19 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/todo" exact>
+            <Route path="/todo" >
               <ListTodo />
             </Route>
-            <Route path="/about" exact>
+            <Route path="/about" >
               <MyComponent />
+            </Route>
+            <Route path="/listusers" >
+              <ListUsers />
             </Route>
           </Switch>
         </header>
         <ToastContainer
-          position="top-right"
+          position="top-center"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

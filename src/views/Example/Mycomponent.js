@@ -1,6 +1,7 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
 import AddComponent from "./AddComponent";
+import Color from "./RandomColor";
 class MyComponent extends React.Component {
     state = {
         arrayJob: [
@@ -37,4 +38,4 @@ class MyComponent extends React.Component {
         )
     }
 }
-export default MyComponent;
+export default Color(MyComponent);
